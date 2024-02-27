@@ -14,6 +14,13 @@ public class RestaurantService {
     public List<Restaurant> findRestaurantsByPostcode(String postcode) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://uk.api.just-eat.io/discovery/uk/restaurants/enriched/bypostcode/" + postcode;
-        return restTemplate.getForObject(url, ApiResponse.class).getRestaurants();
+
+        List<Restaurant> restaurants = restTemplate.getForObject(url, ApiResponse.class).getRestaurants();
+
+        // get a list of 10 restaurants only, or less
+        List<Restaurant> shortenedListOfRestaurants = restaurants.size() > 10 ? restaurants.subList(0, 10)
+                : restaurants;
+        return shortenedListOfRestaurants;
+
     }
 }
