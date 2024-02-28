@@ -24,7 +24,7 @@ public class RestaurantController {
         List<Restaurant> restaurants = restaurantService.findRestaurantsByPostcode(postcode);
 
         model.addAttribute("restaurants", restaurants);
-        return "restaurant";
+        return "restaurants";
     }
 
 }
