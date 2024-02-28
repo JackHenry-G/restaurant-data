@@ -4,22 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link th:href="@{/css/restaurant.css}" rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/eb7c358919.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Restaurant</title>
   </head>
   <body>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Cuisines</th>
-        <th>Rating</th>
-      </tr>
-      <tr th:each="restaurant: ${restaurants}">
-        <td th:text="${restaurant.name}"></td>
-        <td th:text="${restaurant.address}"></td>
-        <td th:text="${restaurant.cuisines}"></td>
-        <td th:text="${restaurant.rating}"></td>
-      </tr>
-    </table>
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-term"
+        placeholder="Enter a postcode to search for restaurants in your area..."
+        onkeyup="checkEnterKey(event)"
+        style="width: 100%"
+      />
+      <button onclick="performSearch()" class="search-button">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(restaurants)}">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Cuisines</th>
+          <th>Rating</th>
+        </tr>
+        <tr th:each="restaurant: ${restaurants}">
+          <td th:text="${restaurant.name}"></td>
+          <td th:text="${restaurant.address}"></td>
+          <td th:text="${restaurant.cuisines}"></td>
+          <td th:text="${restaurant.rating}"></td>
+        </tr>
+      </table>
+    </div>
+    <div th:unless="${not #lists.isEmpty(restaurants)}">
+      <p>No restaurants found.</p>
+    </div>
   </body>
+
+  <script>
+    function checkEnterKey(event) {
+      // Check if the pressed key is Enter (key code 13)
+      if (event.keyCode === 13) {
+        performSearch();
+      }
+    }
+
+    function performSearch() {
+      // Get the value from the input field
+      var searchTerm = document.getElementById("searchInput").value;
+      console.log("Search term:", searchTerm);
+
+      const baseUrl = window.location.origin; // Get the current origin (e.g., http://localhost:8080)
+      const searchUrl = `${baseUrl}/restaurants?postcode=${encodeURIComponent(
+        searchTerm
+      )}`;
+
+      // Redirect the browser to the constructed URL
+      window.location.href = searchUrl;
+    }
+  </script>
 </html>
