@@ -1,8 +1,8 @@
 package com.goggin.restaurantdata.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public class Rating {
     private int count;
     private double starRating;

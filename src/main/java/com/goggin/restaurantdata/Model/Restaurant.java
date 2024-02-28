@@ -2,11 +2,9 @@ package com.goggin.restaurantdata.Model;
 
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
+import lombok.ToString;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public class Restaurant {
     private String name;
     private Address address;

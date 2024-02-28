@@ -1,5 +1,8 @@
 package com.goggin.restaurantdata.Model;
 
+import lombok.ToString;
+
+@ToString
 public class Cuisine {
     private String name;
     private String uniqueName;

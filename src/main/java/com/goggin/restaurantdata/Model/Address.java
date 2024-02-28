@@ -1,14 +1,20 @@
 package com.goggin.restaurantdata.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.ToString;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public class Address {
     private String city;
     private String firstLine;
     private String postalCode;
 
     public Address() {
+    }
+
+    public Address(String city, String firstLine, String postalCode) {
+        this.city = city;
+        this.firstLine = firstLine;
+        this.postalCode = postalCode;
     }
 
     public String getCity() {
