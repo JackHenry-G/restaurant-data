@@ -35,9 +35,9 @@
         </tr>
         <tr th:each="restaurant: ${restaurants}">
           <td th:text="${restaurant.name}"></td>
-          <td th:text="${restaurant.address}"></td>
-          <td th:text="${restaurant.cuisines}"></td>
-          <td th:text="${restaurant.rating}"></td>
+          <td th:text="${restaurant.address.formattedAddress}"></td>
+          <td th:text="${restaurant.cuisineNames}"></td>
+          <td th:text="${restaurant.rating.formattedRating}"></td>
         </tr>
       </table>
     </div>

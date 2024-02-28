@@ -41,4 +41,8 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    public String getFormattedAddress() {
+        return firstLine + ", " + city + ", " + postalCode;
+    }
+
 }

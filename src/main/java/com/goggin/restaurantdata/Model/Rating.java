@@ -32,4 +32,8 @@ public class Rating {
         this.starRating = starRating;
     }
 
+    public String getFormattedRating() {
+        return starRating + " stars (" + count + " reviews)";
+    }
+
 }

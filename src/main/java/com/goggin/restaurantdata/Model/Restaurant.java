@@ -1,6 +1,7 @@
 package com.goggin.restaurantdata.Model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.ToString;
 
@@ -52,6 +53,14 @@ public class Restaurant {
 
     public void setCuisines(List<Cuisine> cuisines) {
         this.cuisines = cuisines;
+    }
+
+    // thymeleaf will interpret th:text="${restaurant.cuisineNames}" as
+    // restaurant.getCuisineNames()
+    public String getCuisineNames() {
+        return cuisines.stream()
+                .map(Cuisine::getName)
+                .collect(Collectors.joining(", "));
     }
 
 }
